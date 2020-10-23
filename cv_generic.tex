@@ -1,0 +1,145 @@
+% Modification of moderncv's "template.tex" example.
+%
+% Type: Generic
+% Description: This is the generic, untailored version of my CV
+\documentclass[11pt,a4paper,sans]{moderncv}
+\usepackage{ifthen}
+
+% CONSTANTS
+\newcommand{\usestylemodern}{Modern}
+\newcommand{\usestyletraditional}{Traditional}
+
+% CONFIG
+\newcommand{\bccvstyle}{Modern} % Modern or Traditional style.
+
+% build.ps1 can override the style
+\ifdefined\bccvstyleoverride
+    \renewcommand{\bccvstyle}{\bccvstyleoverride}
+\fi
+
+% Select theme based off of \bccvstyle config
+\ifthenelse{\equal{\bccvstyle}{\usestylemodern}}
+{
+    \moderncvstyle{casual}
+    \moderncvcolor{blue}
+    \let\usestyletraditional\undefined
+}
+{
+    \moderncvstyle{banking}
+    \moderncvcolor{black}
+    \let\usestylemodern\undefined
+}
+
+% Use serif by default
+\renewcommand{\familydefault}{\sfdefault}
+
+% character encoding
+\usepackage[utf8]{inputenc}
+
+% adjust the page margins
+\usepackage[scale=0.85]{geometry}
+
+% personal data
+\name{Bradley}{Chatha}
+\title{}
+\address{}{}
+\phone[mobile]{+44~7506701660}
+\email{bradley@chatha.dev}
+\homepage{bradley.chatha.dev}
+\social[linkedin]{bradley-chatha}
+\social[twitter]{@BradleyChatha}
+\social[github]{BradleyChatha}
+
+%----------------------------------------------------------------------------------
+%            content
+%----------------------------------------------------------------------------------
+\begin{document}
+%-----       resume       ---------------------------------------------------------
+\makecvtitle
+
+\section{Education}
+\cventry{2017--2020}{Various subjects}{AIM Educational Ltd}{Atherstone}{}
+{
+    \begin{itemize}
+        \item Level 2 Mathematics
+        \item Level 2 English Reading \& Writing
+        \item Level 2 Catering, expected Pass
+        \item Level 2 Employability, expected Pass
+    \end{itemize}
+}
+\cventry{2015--2017}{Level 3 Computer Science (A Level)}{Pembrokeshire College}{}{B}
+{
+}
+
+\section{Experience}
+\cventry{2017--2020}{Work Experience - Student Developer Aide}{AIM Educational Ltd}{Atherstone}{}
+{
+    Alongside my status as a student, my capabilities allowed me to work on
+    several projects for AIM:
+    \begin{itemize}
+        \item FarmMaster (C\#, ASP Core, PSQL, SASS, Gulp, Webpack, JS\&TS, EF Core, Vue, GraphQL)
+        \begin{itemize}
+            \item A WIP Website solution used to keep track of and manage livestock.
+            \item I was the sole, full-stack developer of this project.
+        \end{itemize}
+        \item AimCLITool (D, Docker)
+        \begin{itemize}
+            \item A custom CLI tool used to easily manage various needs I have, such as automatic deployment and secrets management.
+            \item Built on top of my custom CLI and Dependency Injection frameworks: JCLI (D), and JIOC (D)
+        \end{itemize}
+        \item PolyMaster (Likely: Same as FarmMaster, but with Arduino/ESP32 added)
+        \begin{itemize}
+            \item The project was in the pre-planning stage, it would've been used to automatically manage AIM's new Polytunnel.
+            \item Arduinos/ESP32s will be used to monitor and automate various parts of the polytunnel.
+            \item A web interface will be provided to monitor/interact with the various aspects that PolyMaster will manage.
+        \end{itemize}
+    \end{itemize}
+}
+
+\section{Skills}
+\cvitem{Misc}{Good time-keeping; Hard worker; Self-motivating; Completely self-taught.}
+\cvitem{Misc}{Works well independently; Quick learner.}
+
+\section{Hobbies}
+\cvitem{Music}{I study and play the Violin.}
+\cvitem{Gaming}{I'm a fan of a wide variety of genres.}
+
+\section{Awards}
+\cventry{28th June 2019}{School Farm Innovation Award}{School Farm Network}{Royal Agricultural University}{}{}
+
+\section{References}
+\cvitem{Andy Radford}{Owner of AIM Educational Ltd - Previous owner and developer of a PoS software company.}
+\cvitem{Deborah Wagg}{Former Headteacher and Mathematics teacher of AIM Educational Ltd.}
+
+% START Modern CV page
+% Traditional CVs are only one page, Modern can be two (sometimes three!)
+\ifdefined\usestylemodern
+\newpage
+
+\section{Blogging}
+\cvitem{}
+{
+    On my personal website (see footer) I host my blog, which currently contains:
+    \begin{itemize}
+        \item A short tutorial series covering the vast metaprogramming power of D, by creating a JSON serialiser.
+        \item A changelog for my CLI library - JCLI.
+    \end{itemize}
+}
+
+\section{Contributions \& Projects}
+\cvitem{DLang}
+{
+    I have made several contributions to the D programming language and its community, such as:
+    Documentation and additions for Phobos - the standard library, and the creation of my blog
+    which as stated previously, features a tutorial for D.
+}
+\cvitem{JCLI}
+{
+    I currently maintain an open-source library called 'JCLI'. A D library used to help create
+    command line interface tooling.
+}
+
+\fi
+% END Modern CV page
+
+\end{document}

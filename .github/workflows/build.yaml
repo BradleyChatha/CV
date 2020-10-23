@@ -1,0 +1,29 @@
+name: Build PDFs
+
+on:
+  push:
+    paths-ignore: 
+      - 'build/**'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: "Checkout code"
+      uses: actions/checkout@v2
+    - name: "Update apt"
+      run: sudo apt-get update
+    - name: "Install pdflatex"
+      run: sudo apt-get -y install texlive-latex-extra
+    - name: "Install fontawesome"
+      run: sudo apt-get install texlive-fonts-extra
+    - name: "Execute build.ps1"
+      shell: pwsh
+      run: ./build.ps1
+    - name: "Commit built PDFs"
+      run: |
+        git config --global user.name 'Bradley Chatha (SealabJaster)'
+        git config --global user.email 'sealabjaster@gmail.com'
+        git commit -am "Automated push of recent PDF build artifacts"
+        git push
